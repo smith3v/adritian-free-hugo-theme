@@ -9694,7 +9694,7 @@ input[type="email"]::placeholder {
 .rad-subscription-group input[type="email"]::-webkit-input-placeholder,
 .rad-subscription-group input[type="email"]::-moz-placeholder,
 .rad-subscription-group input[type="email"]::-ms-input-placeholder,
-.rad-subscription-group input[type="email"]::placeholder 
+.rad-subscription-group input[type="email"]::placeholder
 {
     color: #fff;
 }
