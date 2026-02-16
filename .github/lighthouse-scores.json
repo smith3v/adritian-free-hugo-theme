@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-02-16T19:43:31Z",
+  "commit": "3d688522fbf9fafea4f5576a8ddd7aab023ea0da",
+  "scores": {
+    "desktop": {
+      "performance": 99,
+      "accessibility": 96,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "mobile": {
+      "performance": 83,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    }
+  }
+}
