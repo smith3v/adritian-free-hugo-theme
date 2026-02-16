@@ -1,17 +1,15 @@
 {{/*
   sectionId: Optional argument to override the default HTML id for this section. If not provided, the default id is used. */}}
-{{- $contextType := printf "%T" . -}}
-{{- $isShortcode := (eq $contextType "*hugolib.ShortcodeWithPage") -}}
 {{ $sectionId := "showcase" }}
-{{ if $isShortcode }}
-  {{ with .Get "sectionId" }}
-    {{ $sectionId = . }}
-  {{ end }}
+{{ with .Get "sectionId" }}
+  {{ $sectionId = . }}
 {{ end }}
 
 <section {{if $sectionId}} id="{{ $sectionId }}"{{end}} class="rad-showcase rad-showcase--index rad-animation-group rad-fade-down">
   <div>
 
+    {{- $contextType := printf "%T" . -}}
+    {{- $isShortcode := (eq $contextType "*hugolib.ShortcodeWithPage") -}}
     {{- $inner := (.Scratch.Get "Inner") -}}
 
     
@@ -31,7 +29,6 @@
     {{- $imgHeight := 0 -}}
     {{- $imgScale := 0.5 -}}
     {{- $socialLinks := "" -}}
-    {{- $showcaseImageSrc := or .Site.Data.homepage.showcase.image.src .Site.Data.homepage.showcase.image.x -}}
 
     {{- if $isShortcode }}
       {{/* Shortcode params */}}
@@ -41,25 +38,28 @@
       {{- $buttonURL = .Get "button_url" | default .Site.Data.homepage.showcase.button.URL -}}
       {{- $buttonIcon = .Get "button_icon" | default .Site.Data.homepage.showcase.button.icon -}}
       {{- $buttonText = .Get "button_text" | default false -}}
-      {{- $imgSrc = .Get "imgSrc" | default $showcaseImageSrc -}}
+      {{- $imgSrc = .Get "imgSrc" | default .Site.Data.homepage.showcase.image.src -}}
       {{- $imgWidth = .Get "imgWidth" | default .Site.Data.homepage.showcase.image.width -}}
       {{- $imgHeight = .Get "imgHeight" | default .Site.Data.homepage.showcase.image.height -}}
       {{- $imgScale = .Get "imgScale" | default .Site.Data.homepage.showcase.image.scale -}}
       {{- $socialLinks = .Get "social_links" -}}
     {{ else }}
       {{/* Fallback site or i18n */}}
-      {{- $showcaseTitle = .Site.Data.homepage.showcase.title | default (i18n "showcase_title") -}}
-      {{- $showcaseSubtitle = .Site.Data.homepage.showcase.subtitle | default (i18n "showcase_subtitle") -}}
-      {{- $showcaseDescription = .Site.Data.homepage.showcase.description | default (i18n "showcase_description") | safeHTML -}}
+      {{- $showcaseTitle = i18n "showcase_title" -}}
+      {{- $showcaseSubtitle = i18n "showcase_subtitle" -}}
+      {{- $showcaseDescription = i18n "showcase_description" | safeHTML -}}
       {{- $buttonURL = .Site.Data.homepage.showcase.button.URL -}}
       {{- $buttonIcon = .Site.Data.homepage.showcase.button.icon -}}
-      {{- $buttonText = .Site.Data.homepage.showcase.button.btnText | default (i18n "showcase_button") -}}
-      {{- $imgSrc = $showcaseImageSrc -}}
+      {{- $buttonText = i18n "showcase_button" -}}
+      {{- $imgSrc = .Site.Data.homepage.showcase.image.src -}}
       {{- $imgWidth = .Site.Data.homepage.showcase.image.width -}}
       {{- $imgHeight = .Site.Data.homepage.showcase.image.height -}}
       {{- $imgScale = .Site.Data.homepage.showcase.image.scale -}}
       {{- $socialLinks = .Site.Data.homepage.showcase.socialLinks -}}
     {{ end }}
+
+
+        {{ warnf "showcase.html: Image x: %q" $imgSrc }}
 
     <div class="showcase-section row flex-column-reverse flex-md-row rad-fade-down rad-waiting rad-animate">
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">

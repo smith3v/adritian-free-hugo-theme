@@ -24,17 +24,15 @@
 {{- end }}
 
 
-{{- $headTitle := .Site.Data.homepage.head.title | default (i18n "head_title") -}}
-{{- $headDescription := .Site.Data.homepage.head.description | default (i18n "head_description") -}}
 <title>
   {{ if .IsHome }}
   {{ else }}
     {{ if .Title }}{{ .Title }} |{{ end }}
   {{ end }}
-  {{ $headTitle }}
+  {{ i18n "head_title" }}
 </title>
 
-<meta name="description" content="{{ $headDescription }}" />
+<meta name="description" content="{{ i18n "head_description" }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
 {{/* RSS Feed Discovery Links */}}
 {{- $siteTitle := i18n "head_title" | default .Site.Title -}}

@@ -23,10 +23,8 @@
 {{/*
   sectionId: Optional argument to override the default HTML id for this section. If not provided, the default id is used. */}}
 {{ $sectionId := "testimonial" }}
-{{ if $isShortcode }}
-  {{ with .Get "sectionId" }}
-    {{ $sectionId = . }}
-  {{ end }}
+{{ with .Get "sectionId" }}
+  {{ $sectionId = . }}
 {{ end }}
 
 <section {{if $sectionId}} id="{{ $sectionId }}"{{end}} class="section rad-animation-group section--border-bottom">
